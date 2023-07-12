@@ -53,6 +53,8 @@ public class GitLabCommitStatusPublisher extends Notifier implements MatrixAggre
             CommitStatusUpdater.updateCommitStatus(build, listener, BuildState.success, name);
         } else if (buildResult == Result.ABORTED) {
             CommitStatusUpdater.updateCommitStatus(build, listener, BuildState.canceled, name);
+        } else if (buildResult == Result.NOT_BUILT) {
+            CommitStatusUpdater.updateCommitStatus(build, listener, BuildState.skipped, name);
         } else {
             CommitStatusUpdater.updateCommitStatus(build, listener, BuildState.failed, name);
         }
